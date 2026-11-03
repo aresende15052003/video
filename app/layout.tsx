@@ -1,21 +1,6 @@
+
 import type { Metadata, Viewport } from 'next';
-import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import './globals.css';
-
-const display = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const sans = Manrope({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-sans',
-  display: 'swap',
-});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -26,7 +11,8 @@ export const metadata: Metadata = {
     'Edição de vídeo e motion design. Responda 3 perguntas rápidas e receba uma proposta alinhada ao seu projeto.',
   openGraph: {
     title: 'Vamos dar vida à sua ideia? | Ana Clara Resende',
-    description: 'Edição de vídeo e motion design. Leva cerca de 1 minuto • Sem compromisso.',
+    description:
+      'Edição de vídeo e motion design. Leva cerca de 1 minuto • Sem compromisso.',
     type: 'website',
     locale: 'pt_BR',
   },
@@ -40,9 +26,31 @@ export const viewport: Viewport = {
   themeColor: '#F5EFE6',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="pt-BR" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap"
+        />
+        <style>{`
+          :root {
+            --font-display: 'Cormorant Garamond';
+            --font-sans: 'Manrope';
+          }
+        `}</style>
+      </head>
       <body>{children}</body>
     </html>
   );
